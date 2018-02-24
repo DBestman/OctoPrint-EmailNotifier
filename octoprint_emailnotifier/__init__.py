@@ -39,8 +39,8 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 			mail_useralias="",
 			include_snapshot=True,
 			message_format=dict(
-				title="Print job complete",
-				body="{filename} done printing after {elapsed_time}" 
+				title="Print job {filename}",
+				body="{event} for {filename} after {elapsed_time}" 
 			)
 		)
 	
@@ -72,7 +72,7 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 	#~~ EventPlugin
 	
 	def on_event(self, event, payload):
-		if event != "PrintDone":
+		if event not in ["PrintDone", "PrintStarted", "PrintFailed", "PrintCancelled"]:
 			return
 		
 		if not self._settings.get(['enabled']):
@@ -84,7 +84,7 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 		import octoprint.util
 		elapsed_time = octoprint.util.get_formatted_timedelta(datetime.timedelta(seconds=payload["time"]))
 		
-		tags = {'filename': filename, 'elapsed_time': elapsed_time}
+		tags = {'filename': filename, 'elapsed_time': elapsed_time, 'event': event}
 		subject = self._settings.get(["message_format", "title"]).format(**tags)
 		message = self._settings.get(["message_format", "body"]).format(**tags)
 		body = [message]
@@ -107,12 +107,12 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 
 				# version check: github repository
 				type="github_release",
-				user="anoved",
+				user="kotl",
 				repo="OctoPrint-EmailNotifier",
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/anoved/OctoPrint-EmailNotifier/archive/{target_version}.zip",
+				pip="https://github.com/kotl/OctoPrint-EmailNotifier/archive/{target_version}.zip",
 				dependency_links=False
 			)
 		)
