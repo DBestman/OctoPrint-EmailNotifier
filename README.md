@@ -1,14 +1,16 @@
 # OctoPrint-EmailNotifier
 
-Recieve email notifications when OctoPrint jobs are complete.
+Recieve email notifications when OctoPrint jobs are STARTED or COMPLETED.
+
+*   Forked from ericli1018/OctoPrint-EmailNotifier which is forked from anov/OctoPrint-EmailNotifier
 
 ![Settings tab and email screenshot](extras/emailnotifier.png)
 
 ## Installation
 
-Install via the OctoPrint [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager) or manually using this [archive URL](https://github.com/anoved/OctoPrint-EmailNotifier/archive/master.zip):
+Install via the OctoPrint [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager) or manually using this [archive URL](https://github.com/kotl/OctoPrint-EmailNotifier/archive/master.zip):
 
-	https://github.com/anoved/OctoPrint-EmailNotifier/archive/master.zip
+	https://github.com/kotl/OctoPrint-EmailNotifier/archive/master.zip
 
 ## Configuration
 
