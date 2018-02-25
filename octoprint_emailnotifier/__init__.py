@@ -5,6 +5,9 @@ import octoprint.plugin
 import yagmail
 import flask
 import tempfile
+import datetime
+import octoprint.util
+
 from email.utils import formatdate
 
 from email.utils import formatdate
@@ -78,11 +81,17 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 		if not self._settings.get(['enabled']):
 			return
 		
-		filename = os.path.basename(payload["file"])
-		
-		import datetime
-		import octoprint.util
-		elapsed_time = octoprint.util.get_formatted_timedelta(datetime.timedelta(seconds=payload["time"]))
+		filename = 'Filename unknown'
+		try:
+			filename = os.path.basename(payload["file"])
+		except Exception as e:
+			self._logger.exception("File name can't be retrieved: %s" % (str(e)))
+
+		elapsed_time = 'Elapsed time unknown'
+		try:
+			elapsed_time = octoprint.util.get_formatted_timedelta(datetime.timedelta(seconds=payload["time"]))
+		except Exception as e:
+			self._logger.exception("Elapsed time can't be retrieved: %s" % (str(e)))
 		
 		tags = {'filename': filename, 'elapsed_time': elapsed_time, 'event': event}
 		subject = self._settings.get(["message_format", "title"]).format(**tags)
