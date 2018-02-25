@@ -10,9 +10,9 @@ license: AGPLv3
 # today's date in format YYYY-MM-DD, e.g.
 date: 2015-09-23
     
-homepage: https://github.com/anoved/OctoPrint-EmailNotifier
-source: https://github.com/anoved/OctoPrint-EmailNotifier
-archive: https://github.com/anoved/OctoPrint-EmailNotifier/archive/master.zip
+homepage: https://github.com/kotl/OctoPrint-EmailNotifier
+source: https://github.com/kotl/OctoPrint-EmailNotifier
+archive: https://github.com/kotl/OctoPrint-EmailNotifier/archive/master.zip
     
 # set this to true if your plugin uses the dependency_links setup parameter to include
 # library versions not yet published on PyPi. SHOULD ONLY BE USED IF THERE IS NO OTHER OPTION!
