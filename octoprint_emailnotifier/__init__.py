@@ -75,7 +75,7 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 	#~~ EventPlugin
 
 	def on_event(self, event, payload):
-		if event not in ["PrintDone", "PrintStarted", "PrintFailed", "PrintCancelled"]:
+		if event not in ["PrintDone", "PrintStarted", "PrintFailed"]:
 			return
 
 		if not self._settings.get(['enabled']):
