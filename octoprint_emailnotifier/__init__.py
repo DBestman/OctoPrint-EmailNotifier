@@ -43,10 +43,10 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 			include_snapshot=True,
 			message_format=dict(
 				title="Print job {filename}",
-				body="{event} for {filename} after {elapsed_time}" 
+				body="{event} for {filename} after {elapsed_time}"
 			)
 		)
-	
+
 	def get_settings_version(self):
 		return 1
 
@@ -73,33 +73,29 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 		]
 
 	#~~ EventPlugin
-	
+
 	def on_event(self, event, payload):
 		if event not in ["PrintDone", "PrintStarted", "PrintFailed", "PrintCancelled"]:
 			return
-		
+
 		if not self._settings.get(['enabled']):
 			return
-		
-		filename = 'Filename unknown'
-		try:
-			filename = os.path.basename(payload["file"])
-		except Exception as e:
-			self._logger.exception("File name can't be retrieved: %s" % (str(e)))
 
-		elapsed_time = 'Elapsed time unknown'
+		filename = os.path.basename(payload["file"])
+
+		elapsed_time = 'unknown'
 		try:
 			elapsed_time = octoprint.util.get_formatted_timedelta(datetime.timedelta(seconds=payload["time"]))
 		except Exception as e:
 			self._logger.exception("Elapsed time can't be retrieved: %s" % (str(e)))
-		
+
 		tags = {'filename': filename, 'elapsed_time': elapsed_time, 'event': event}
 		subject = self._settings.get(["message_format", "title"]).format(**tags)
 		message = self._settings.get(["message_format", "body"]).format(**tags)
 		body = [message]
-		
+
 		try:
-			self.send_notification(subject, body, self._settings.get(['include_snapshot']))
+			self.send_notification(subject, body, self._settings.get(['include_snapshot']), event=event)
 		except Exception as e:
 			# If the email wasn't sent, report problems appropriately.
 			self._logger.exception("Email notification error: %s" % (str(e)))
@@ -141,7 +137,7 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 			snapshot = bool(data["snapshot"])
 
 			try:
-				self.send_notification(subject, body, snapshot)
+				self.send_notification(subject, body, snapshot, event="test")
 			except Exception as e:
 				self._logger.exception("Email notification error: %s" % (str(e)))
 				return flask.jsonify(success=False, msg=str(e))
@@ -157,10 +153,10 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 
 	# Helper function to reduce code duplication.
 	# If snapshot == True, a webcam snapshot will be appended to body before sending.
-	def send_notification(self, subject="OctoPrint notification", body=[""], snapshot=True):
+	def send_notification(self, subject="OctoPrint notification", body=[""], snapshot=True, event=""):
 
 		# If a snapshot is requested, let's grab it now.
-		if snapshot:
+		if snapshot and not (event=="PrintStarted"):
 			snapshot_url = self._settings.global_get(["webcam", "snapshot"])
 			if snapshot_url:
 				try:
