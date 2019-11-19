@@ -9,7 +9,11 @@ OctoPrint-EmailNotifier
 
 Recieve email notifications when OctoPrint jobs are STARTED, COMPLETED, FAILED or CANCELLED.
 
--	Forked from kotl/OctoPrint-EmailNotifier which is forked from ericli1018/OctoPrint-EmailNotifier which is forked from anov/OctoPrint-EmailNotifier
+Forked from
+
+-	kotl/OctoPrint-EmailNotifier which is forked from
+	-	ericli1018/OctoPrint-EmailNotifier which is forked from
+		-	anov/OctoPrint-EmailNotifier
 
 ![Settings tab and email screenshot](extras/emailnotifier.png)
 
