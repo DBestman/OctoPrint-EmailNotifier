@@ -1,6 +1,10 @@
 OctoPrint-EmailNotifier
 =======================
 
+**UPDATE** *2019-Dec-15*: Another install on OctoPi 0.17 / OctoPrint 1.3.12
+
+-	For python2 support, along with `keyring` (`18.0.1`), also need to go with `keyrings.alt` (`3.1.1`\)
+
 **UPDATE** *2019-Nov-18*: updated install as OctoPi 0.17 / OctoPrint 1.3.12
 
 -	OctoPrint 1.3.12 is still python2 based. `keyring` versions `19.0.0` or greater only support python>=3.5, so explicitly install older version of `keyring` (`18.0.1`\)
@@ -20,6 +24,13 @@ Forked from
 Installation
 ------------
 
+**IMPORTANT**: On python2-based versions of OctoPrint, including 1.3.x, before attempting to install this plugin, first install python2-compatible version of some modules:
+
+```
+$ ~/oprint/bin/pip install keyring==18.0.1
+$ ~/oprint/bin/pip install keyrings.alt==3.1.1
+```
+
 Install via the OctoPrint [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager) or manually using this [archive URL](https://github.com/kotl/OctoPrint-EmailNotifier/archive/master.zip):
 
 ```
@@ -32,8 +43,6 @@ Configuration
 Your outgoing email account password is not stored with OctoPrint's settings. It is retrieved from your system [keyring](https://pypi.python.org/pypi/keyring#what-is-python-keyring-lib). Store your password from a Python prompt on your OctoPrint system using [`yagmail.register`](https://github.com/kootenpv/yagmail#username-and-password):
 
 ```
-$ ~/oprint/bin/pip install keyring==18.0.1
-
 $ ~/oprint/bin/python
 >>> import yagmail
 >>> import keyring
