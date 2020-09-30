@@ -11,7 +11,7 @@ import octoprint.util
 from email.utils import formatdate
 
 from email.utils import formatdate
-from flask_login import current_user 
+from flask_login import current_user
 
 class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
                           octoprint.plugin.SettingsPlugin,
