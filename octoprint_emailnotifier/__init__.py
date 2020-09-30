@@ -12,6 +12,7 @@ from email.utils import formatdate
 
 from email.utils import formatdate
 from flask.ext.login import current_user
+#from flask_login import current_user 
 
 class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
                           octoprint.plugin.SettingsPlugin,
@@ -175,6 +176,7 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 
 
 __plugin_name__ = "Email Notifier"
+__plugin_pythoncompat__ = ">=2.7,<4" 
 
 def __plugin_load__():
 	global __plugin_implementation__

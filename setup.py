@@ -14,20 +14,20 @@ plugin_package = "octoprint_%s" % plugin_identifier
 plugin_name = "OctoPrint-EmailNotifier"
 
 # The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
-plugin_version = "0.1.1"
+plugin_version = "0.2.0"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
-plugin_description = "Recieve email notifications when OctoPrint jobs are complete."
+plugin_description = "Receive email notifications when OctoPrint jobs are complete."
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
-plugin_author = "Jim DeVona"
+plugin_author = "David Crook"
 
 # The plugin's author's mail address.
-plugin_author_email = "jim@anoved.net"
+plugin_author_email = "idcrook@users.noreply.github.com"
 
 # The plugin's homepage URL. Can be overwritten within OctoPrint's internal data via __plugin_url__ in the plugin module
-plugin_url = "https://github.com/kotl/OctoPrint-EmailNotifier"
+plugin_url = "https://github.com/idcrook/OctoPrint-EmailNotifier"
 
 # The plugin's license. Can be overwritten within OctoPrint's internal data via __plugin_license__ in the plugin module
 plugin_license = "AGPLv3"
