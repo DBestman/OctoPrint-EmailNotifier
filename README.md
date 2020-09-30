@@ -29,10 +29,10 @@ $ ~/oprint/bin/pip install keyring==18.0.1
 $ ~/oprint/bin/pip install keyrings.alt==3.1.1
 ```
 
-Install via the OctoPrint [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager) or manually using this [archive URL](https://github.com/idcrook/OctoPrint-EmailNotifier/archive/python3.zip):
+Install via the OctoPrint [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager) or manually using this [archive URL](https://github.com/idcrook/OctoPrint-EmailNotifier/archive/main.zip):
 
 ```
-https://github.com/idcrook/OctoPrint-EmailNotifier/archive/python3.zip
+https://github.com/idcrook/OctoPrint-EmailNotifier/archive/main.zip
 ```
 
 Configuration

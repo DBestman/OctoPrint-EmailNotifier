@@ -52,7 +52,7 @@ plugin_ignored_packages = []
 #
 # Example:
 #     plugin_requires = ["someDependency==dev"]
-#     additional_setup_parameters = {"dependency_links": ["https://github.com/someUser/someRepo/archive/master.zip#egg=someDependency-dev"]}
+#     additional_setup_parameters = {"dependency_links": ["https://github.com/someUser/someRepo/archive/main.zip#egg=someDependency-dev"]}
 additional_setup_parameters = {}
 
 # README/long description file to use for PyPi uploads. Must be the full absolute path. If the filename ends on

@@ -8,11 +8,11 @@ author: Jim DeVona
 license: AGPLv3
     
 # today's date in format YYYY-MM-DD, e.g.
-date: 2015-09-23
+date: 2020-09-30
     
-homepage: https://github.com/kotl/OctoPrint-EmailNotifier
-source: https://github.com/kotl/OctoPrint-EmailNotifier
-archive: https://github.com/kotl/OctoPrint-EmailNotifier/archive/master.zip
+homepage: https://github.com/idcrook/OctoPrint-EmailNotifier
+source: https://github.com/idcrook/OctoPrint-EmailNotifier
+archive: https://github.com/idcrook/OctoPrint-EmailNotifier/archive/main.zip
     
 # set this to true if your plugin uses the dependency_links setup parameter to include
 # library versions not yet published on PyPi. SHOULD ONLY BE USED IF THERE IS NO OTHER OPTION!
@@ -31,7 +31,7 @@ featuredimage: /assets/img/plugins/emailnotifier/emailnotifier.png
 compatibility:
   # list of compatible versions, for example 1.2.0. If left empty no specific version requirement will be assumed
   octoprint:
-  - 1.2.4
+  - 1.4.0
 
 ---
     
