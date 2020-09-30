@@ -1,13 +1,11 @@
 OctoPrint-EmailNotifier
 =======================
 
-**UPDATE** *2019-Dec-15*: Another install on OctoPi 0.17 / OctoPrint 1.3.12
+**UPDATE** *2020-Sep-30*: Version 0.2.0 updated **with python3 support**
 
--	For python2 support, along with `keyring` (`18.0.1`), also need to go with `keyrings.alt` (`3.1.1`\)
+-	Tested on OctoPrint `1.4.x`
 
-**UPDATE** *2019-Nov-18*: updated install as OctoPi 0.17 / OctoPrint 1.3.12
-
--	OctoPrint 1.3.12 is still python2 based. `keyring` versions `19.0.0` or greater only support python>=3.5, so explicitly install older version of `keyring` (`18.0.1`\)
+For python2 support, see below for compatible `keyring` packages.
 
 ---
 
@@ -15,9 +13,9 @@ Recieve email notifications when OctoPrint jobs are STARTED, COMPLETED, FAILED o
 
 Forked from
 
--	kotl/OctoPrint-EmailNotifier which is forked from
-	-	ericli1018/OctoPrint-EmailNotifier which is forked from
-		-	anov/OctoPrint-EmailNotifier
+-	`kotl/OctoPrint-EmailNotifier` which is forked from
+	-	`ericli1018/OctoPrint-EmailNotifier` which is forked from
+		-	`anov/OctoPrint-EmailNotifier`
 
 ![Settings tab and email screenshot](extras/emailnotifier.png)
 
@@ -26,15 +24,15 @@ Installation
 
 **IMPORTANT**: On python2-based versions of OctoPrint, including 1.3.x, before attempting to install this plugin, first install python2-compatible version of some modules:
 
-```
+```console
 $ ~/oprint/bin/pip install keyring==18.0.1
 $ ~/oprint/bin/pip install keyrings.alt==3.1.1
 ```
 
-Install via the OctoPrint [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager) or manually using this [archive URL](https://github.com/kotl/OctoPrint-EmailNotifier/archive/master.zip):
+Install via the OctoPrint [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager) or manually using this [archive URL](https://github.com/idcrook/OctoPrint-EmailNotifier/archive/python3.zip):
 
 ```
-https://github.com/kotl/OctoPrint-EmailNotifier/archive/master.zip
+https://github.com/idcrook/OctoPrint-EmailNotifier/archive/python3.zip
 ```
 
 Configuration
@@ -56,6 +54,22 @@ To use yagmail (and thus OctoPrint-EmailNotifier) with Gmail, you may need to [a
 -	Server: `smtp.gmail.com`
 -	Serverport: `587`
 -	[X] Use TLS
+
+Troubleshooting
+---------------
+
+If on Raspberry Pi, when you try to \[Send a test email\] and you encounter this error:
+
+```
+ImportError: libxslt.so.1: cannot open shared object file: No such file or directory
+```
+
+Install the system library:
+
+```console
+$ sudo apt install libxslt-dev
+# on later systems, if that does not work # $ sudo apt install libxslt1-dev
+```
 
 Acknowledgements
 ----------------
