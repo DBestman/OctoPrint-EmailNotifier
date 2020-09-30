@@ -160,8 +160,15 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 			snapshot_url = self._settings.global_get(["webcam", "snapshot"])
 			if snapshot_url:
 				try:
-					import urllib
-					filename, headers = urllib.urlretrieve(snapshot_url, tempfile.gettempdir()+"/snapshot.jpg")
+					try:
+					    from urllib.parse import urlparse, urlencode
+						from urllib.request import urlretrieve, urlopen, Request
+						from urllib.error import HTTPError
+					except ImportError as e:
+					    from urlparse import urlparse
+						from urllib import urlencode, urlretrieve
+					    from urllib2 import urlopen, Request, HTTPError
+					filename, headers = urlretrieve(snapshot_url, tempfile.gettempdir()+"/snapshot.jpg")
 				except Exception as e:
 					self._logger.exception("Snapshot error (sending email notification without image): %s" % (str(e)))
 				else:
