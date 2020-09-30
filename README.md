@@ -3,9 +3,9 @@ OctoPrint-EmailNotifier
 
 **UPDATE** *2020-Sep-30*: Version 0.2.0 updated **with python3 support**
 
-- Tested on OctoPrint 1.4.x
+-	Tested on OctoPrint `1.4.x`
 
-- For python2 support, along with `keyring` (`18.0.1`), also need to go with `keyrings.alt` (`3.1.1`\)
+For python2 support, see below for compatible `keyring` packages.
 
 ---
 
@@ -21,17 +21,6 @@ Forked from
 
 Installation
 ------------
-
-If on Raspberry Pi, when you \[Send a test email\] you encounter this error:
-
-	ImportError: libxslt.so.1: cannot open shared object file: No such file or directory
-
-
-
-```console
-$ sudo apt install libxslt-dev
-# on later systems, if that does not work # $ sudo apt install libxslt1-dev
-```
 
 **IMPORTANT**: On python2-based versions of OctoPrint, including 1.3.x, before attempting to install this plugin, first install python2-compatible version of some modules:
 
@@ -65,6 +54,22 @@ To use yagmail (and thus OctoPrint-EmailNotifier) with Gmail, you may need to [a
 -	Server: `smtp.gmail.com`
 -	Serverport: `587`
 -	[X] Use TLS
+
+Troubleshooting
+---------------
+
+If on Raspberry Pi, when you try to \[Send a test email\] and you encounter this error:
+
+```
+ImportError: libxslt.so.1: cannot open shared object file: No such file or directory
+```
+
+Install the system library:
+
+```console
+$ sudo apt install libxslt-dev
+# on later systems, if that does not work # $ sudo apt install libxslt1-dev
+```
 
 Acknowledgements
 ----------------
