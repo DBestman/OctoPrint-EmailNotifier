@@ -81,7 +81,7 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 		if not self._settings.get(['enabled']):
 			return
 
-		filename = os.path.basename(payload["file"])
+		filename = os.path.basename(payload["name"])
 
 		elapsed_time = 'unknown'
 		try:
