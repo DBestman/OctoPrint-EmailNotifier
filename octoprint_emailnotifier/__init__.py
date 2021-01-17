@@ -183,6 +183,7 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 
 __plugin_name__ = "Email Notifier"
 __plugin_pythoncompat__ = ">=2.7,<4" 
+__plugin_url__ = "https://github.com/DBestman/OctoPrint-EmailNotifier"
 
 def __plugin_load__():
 	global __plugin_implementation__
