@@ -42,8 +42,16 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 			mail_useralias="",
 			include_snapshot=True,
 			message_format=dict(
-				title="Print job {filename}",
-				body="{event} for {filename} after {elapsed_time}"
+				title=dict(
+					PrintDone="Print Job Complete: {filename}",
+					PrintStarted="Print Job Started: {filename}",
+					PrintFailed="Print Job Failed: {filename}"
+				)
+				body=dict(
+					PrintDone="{event} for {filename} after {elapsed_time}",
+					PrintStarted="{event} for {filename}",
+					PrintFailed="{event} for {filename} after {elapsed_time}"
+				)
 			)
 		)
 
@@ -75,7 +83,9 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 	#~~ EventPlugin
 
 	def on_event(self, event, payload):
-		if event not in ["PrintDone", "PrintStarted", "PrintFailed"]:
+		# if event not in ["PrintDone", "PrintStarted", "PrintFailed"]:
+		# For now I just want notifications for PrintDone.  Ideally this should be configurable from the UI
+		if event not in ["PrintDone"]:
 			return
 
 		if not self._settings.get(['enabled']):
@@ -90,8 +100,8 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 			self._logger.exception("Elapsed time can't be retrieved: %s" % (str(e)))
 
 		tags = {'filename': filename, 'elapsed_time': elapsed_time, 'event': event}
-		subject = self._settings.get(["message_format", "title"]).format(**tags)
-		message = self._settings.get(["message_format", "body"]).format(**tags)
+		subject = self._settings.get(["message_format", "title", event]).format(**tags)
+		message = self._settings.get(["message_format", "body", event]).format(**tags)
 		body = [message]
 
 		try:
@@ -112,12 +122,12 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 
 				# version check: github repository
 				type="github_release",
-				user="kotl",
+				user="DBestman",
 				repo="OctoPrint-EmailNotifier",
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/kotl/OctoPrint-EmailNotifier/archive/{target_version}.zip",
+				pip="https://github.com/DBestman/OctoPrint-EmailNotifier/archive/{target_version}.zip",
 				dependency_links=False
 			)
 		)
