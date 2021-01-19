@@ -46,7 +46,7 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 					PrintDone="Print Job Complete: {filename}",
 					PrintStarted="Print Job Started: {filename}",
 					PrintFailed="Print Job Failed: {filename}"
-				)
+				),
 				body=dict(
 					PrintDone="{event} for {filename} after {elapsed_time}",
 					PrintStarted="{event} for {filename}",
