@@ -44,11 +44,13 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 			message_format=dict(
 				title=dict(
 					PrintDone="Print Job Complete: {filename}",
+					PrintPaused="Print Job Paused: {filename}",
 					PrintStarted="Print Job Started: {filename}",
 					PrintFailed="Print Job Failed: {filename}"
 				),
 				body=dict(
 					PrintDone="{event} for {filename} after {elapsed_time}",
+					PrintPaused="{event} for {filename} after {elapsed_time}",
 					PrintStarted="{event} for {filename}",
 					PrintFailed="{event} for {filename} after {elapsed_time}"
 				)
@@ -85,7 +87,7 @@ class EmailNotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 	def on_event(self, event, payload):
 		# if event not in ["PrintDone", "PrintStarted", "PrintFailed"]:
 		# For now I just want notifications for PrintDone.  Ideally this should be configurable from the UI
-		if event not in ["PrintDone"]:
+		if event not in ["PrintDone", "PrintPaused"]:
 			return
 
 		if not self._settings.get(['enabled']):
